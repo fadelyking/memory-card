@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cards from "./Cards";
 import Score from "./Score";
 
@@ -8,7 +8,7 @@ export default function DisplayUI() {
 	const [clicked, setClicked] = useState([]);
 
 	function handleClick(data) {
-		console.log(data);
+		setCurrentScore(data.clickedCards);
 	}
 
 	return (
