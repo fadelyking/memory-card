@@ -1,1 +1,5 @@
-import { useState } from "react";
+import DisplayUI from "./components/Display";
+
+export default function App() {
+	return <DisplayUI />;
+}
