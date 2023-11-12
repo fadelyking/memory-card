@@ -8,7 +8,8 @@ export default function DisplayUI() {
 	const [clicked, setClicked] = useState([]);
 
 	function handleClick(data) {
-		setCurrentScore(data.clickedCards);
+		setCurrentScore(data.score);
+		setBestScore(data.bestScoreArr.length + 1);
 	}
 
 	return (
