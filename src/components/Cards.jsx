@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 import { useEffect, useState } from "react";
 export default function Cards(props) {
+	// Score state
+	// Cards state
 	const [score, setScore] = useState(0);
 	const [cards, setCards] = useState([
 		{ card: "Test 1", id: uuidv4(), clicked: false },
@@ -14,7 +16,7 @@ export default function Cards(props) {
 	function handleClick(e) {
 		// Turns cards to red (Visual Purposes only)
 		e.target.style.backgroundColor = "Red";
-
+		// Set clicked to true
 		setCards(
 			cards.map((card) => {
 				if (e.target.getAttribute("value") === card.id && card.clicked === false) {
@@ -32,6 +34,9 @@ export default function Cards(props) {
 			}
 		}
 
+		// Control the score
+		// Add 1 to score when the user clicks on a card
+		// Set score to 0 when a user clicks on a card they already clicked on
 		for (const card of cards) {
 			if (e.target.getAttribute("value") === card.id && card.clicked === false) {
 				setScore(score + 1);
@@ -49,9 +54,11 @@ export default function Cards(props) {
 			}
 		}
 
+		// Pass props to parent component
 		props.onClick({ score, bestScoreArr });
 	}
 
+	// Shuffle the cards
 	useEffect(() => {
 		const newArr = cards;
 		newArr.sort((a, b) => 0.5 - Math.random());
