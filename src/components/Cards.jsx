@@ -12,6 +12,7 @@ export default function Cards(props) {
 	]);
 
 	function handleClick(e) {
+		// Turns cards to red (Visual Purposes only)
 		e.target.style.backgroundColor = "Red";
 
 		setCards(
@@ -34,7 +35,7 @@ export default function Cards(props) {
 		for (const card of cards) {
 			if (e.target.getAttribute("value") === card.id && card.clicked === false) {
 				setScore(score + 1);
-			} else if (e.target.getAttribute("value") === card.id && card.clicked === true) {
+			} else if (e.target.getAttribute("value") == card.id && card.clicked === true) {
 				setCards(
 					cards.map((card) => {
 						if (e.target.getAttribute("value") === card.id && card.clicked === true) {
@@ -48,14 +49,14 @@ export default function Cards(props) {
 			}
 		}
 
-		props.onClick({ score, findBestScore });
+		props.onClick({ score, bestScoreArr });
 	}
 
-	/* 
 	useEffect(() => {
-		setCards(cards.map((card) => {}));
-	}, []);
- */
+		const newArr = cards;
+		newArr.sort((a, b) => 0.5 - Math.random());
+	}, [cards]);
+
 	return (
 		<div className="cards-container">
 			{cards.map((card) => (
