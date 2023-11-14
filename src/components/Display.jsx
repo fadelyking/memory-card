@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Cards from "./Cards";
 import Score from "./Score";
+import Data from "../data/Data";
 
 export default function DisplayUI() {
 	const [currentScore, setCurrentScore] = useState(0);
@@ -8,8 +9,12 @@ export default function DisplayUI() {
 	const [clicked, setClicked] = useState([]);
 
 	function handleClick(data) {
-		setCurrentScore(data.score);
-		setBestScore(data.bestScoreArr.length + 1);
+		if (currentScore === data.score) {
+			setCurrentScore(data.score + 1);
+		} else if (currentScore !== data.score) {
+			setBestScore(currentScore);
+			setCurrentScore(0);
+		}
 	}
 
 	return (
