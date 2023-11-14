@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { useEffect, useState } from "react";
+import Data from "../data/Data";
 export default function Cards(props) {
 	// Score state
 	// Cards state
@@ -41,6 +42,7 @@ export default function Cards(props) {
 			if (e.target.getAttribute("value") === card.id && card.clicked === false) {
 				setScore(score + 1);
 			} else if (e.target.getAttribute("value") == card.id && card.clicked === true) {
+				setScore(0);
 				setCards(
 					cards.map((card) => {
 						if (e.target.getAttribute("value") === card.id && card.clicked === true) {
@@ -50,7 +52,6 @@ export default function Cards(props) {
 						}
 					})
 				);
-				return setScore(0);
 			}
 		}
 
@@ -63,12 +64,12 @@ export default function Cards(props) {
 		const newArr = cards;
 		newArr.sort((a, b) => 0.5 - Math.random());
 	}, [cards]);
-
+	let i = 0;
 	return (
 		<div className="cards-container">
 			{cards.map((card) => (
 				<li className="card" value={card.id} key={card.id} onClick={handleClick}>
-					{card.card}
+					<Data image={i++}></Data>
 				</li>
 			))}
 		</div>
